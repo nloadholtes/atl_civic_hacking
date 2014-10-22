@@ -2,30 +2,44 @@ import sys
 import csv
 
 
-
 def csv_to_dict(data, key_col):
     output = {}
     for row in data:
+        if row[key_col] == '':
+            continue
         key_data = output.get(row[key_col], [])
         key_data.append(row[key_col + 1:])
         output[row[key_col]] = key_data
-
     return output
-
-
 
 
 def main(filename):
     print("opening: %s" % filename)
     cdata = csv.reader(open(filename, 'r'))
     data = []
-    #toss headers
     headers = cdata.next()
+    print(headers)
     for row in cdata:
         data.append(row)
     print(data[0])
-    print(csv_to_dict(data, 1))
+    vendors = csv_to_dict(data, 1)
+    # import ipdb; ipdb.set_trace()
     
+    for vendor, day_data in vendors.items():
+        t = analyze_paper_vs_swipe(day_data)
+        print("%s saw %s  charged" % (vendor, t))
+
+
+def analyze_paper_vs_swipe(day_data):
+    swipe_total = 0.0
+    ebt_total = 0.0
+    for day in day_data:
+        ebt_total += float(day[4][1:])
+        swipe_total += float(day[8][1:])
+        break
+    import ipdb; ipdb.set_trace()
+    return float(swipe_total) / ebt_total
+
 
 
 if __name__ == '__main__':
