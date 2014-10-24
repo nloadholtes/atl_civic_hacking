@@ -34,10 +34,8 @@ def analyze_paper_vs_swipe(day_data):
     swipe_total = 0.0
     ebt_total = 0.0
     for day in day_data:
-        ebt_total += float(day[4][1:])
-        swipe_total += float(day[8][1:])
-        break
-    import ipdb; ipdb.set_trace()
+        ebt_total += float(day[3][1:])
+        swipe_total += float(day[7][1:])
     return float(swipe_total) / ebt_total
 
 
