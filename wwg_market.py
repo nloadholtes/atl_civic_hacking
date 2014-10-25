@@ -1,3 +1,18 @@
+"""
+wwg_market.py - Nick Loadholtes <nick@ironboundsoftware.com> Oct 2014
+
+This quick-and-dirty script was written to analyze some data provided at an ATLHack event
+on "Food Security". The data was in spreadsheets from Wholesome Wave Georgia and it concerned
+Farmer's Markets and EBT/SNAP transactions.
+
+The functions below work on a subset of the spreadsheet data, simply copy/pasted into CSV format
+so that it could be quickly/easily analyzed.
+
+The commandline to run this is:
+
+python wwg_market.py <path_to_the_csv_data>
+
+"""
 import sys
 import csv
 
