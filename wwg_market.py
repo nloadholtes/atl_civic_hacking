@@ -15,6 +15,7 @@ python wwg_market.py <path_to_the_csv_data>
 """
 import sys
 import csv
+import argparse
 
 
 def csv_to_dict(data, key_col):
@@ -55,7 +56,6 @@ def _dollar_str_to_float(dollar):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print("A csv file is needed")
-        sys.exit(-1)
-    main(sys.argv[1])
+    ap = argparse.ArgumentParser()
+    ap.add_argument('-f', '--filename', required=True, help='This is the CSV file to read in')
+    main(ap.parse_args().filename)
